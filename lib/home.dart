@@ -1,4 +1,8 @@
-﻿import 'package:flutter/material.dart';
+﻿import 'package:app_atm/cliente.dart';
+import 'package:app_atm/contato.dart';
+import 'package:app_atm/empresa.dart';
+import 'package:app_atm/servico.dart';
+import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -29,8 +33,39 @@ class _BodyState extends State<Body> {
   var _imgMenuClientes = AssetImage('images/menu_cliente.png');
   var _imgMenuContato = AssetImage('images/menu_contato.png');
 
-  void abrirEmpresa(String opcao) {
-    print('opção ' + opcao);
+  void abrirJanela(String opcao) {
+    switch (opcao) {
+      case 'EMPRESA':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TelaEmpresa(),
+            ));
+        break;
+      case 'SERVICOS':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TelaServico(),
+            ));
+        break;
+      case 'CLIENTES':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TelaCliente(),
+            ));
+        break;
+      case 'CONTATO':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TelaContato(),
+            ));
+        break;
+      default:
+        null;
+    }
   }
 
   @override
@@ -53,7 +88,7 @@ class _BodyState extends State<Body> {
                       padding: EdgeInsets.only(right: 30),
                       child: GestureDetector(
                         onTap: () {
-                          abrirEmpresa('Menu empresa');
+                          abrirJanela('EMPRESA');
                         },
                         child: Image(image: _imgMenuEmpresa),
                       ),
@@ -61,7 +96,7 @@ class _BodyState extends State<Body> {
                     GestureDetector(
                       child: Image(image: _imgMenuServicos),
                       onTap: () {
-                        abrirEmpresa('Menu serviços');
+                        abrirJanela('SERVICOS');
                       },
                     )
                   ],
@@ -77,14 +112,14 @@ class _BodyState extends State<Body> {
                       child: GestureDetector(
                         child: Image(image: _imgMenuClientes),
                         onTap: () {
-                          abrirEmpresa('Menu clientes');
+                          abrirJanela('CLIENTES');
                         },
                       ),
                     ),
                     GestureDetector(
                       child: Image(image: _imgMenuContato),
                       onTap: () {
-                        abrirEmpresa('Menu contato');
+                        abrirJanela('CONTATO');
                       },
                     )
                   ],
